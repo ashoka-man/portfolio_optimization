@@ -54,12 +54,31 @@ class StockDataScraper:
     
 if __name__ == "__main__":
     #quick test of functionality
+    stocks = ["AAPL", "GOOGL", "TLSA", "AMZN"]
+    start = "2023-01-01"
+    end = "2024-01-01"
     scraper = StockDataScraper()
-    stock_data = scraper.get_stock_data("MSFT", "2023-01-01", "2024-01-01")
-    financials = scraper.get_financials("MSFT")
-    key_stats = scraper.get_key_stats("MSFT")
-    scraper.plot_log_returns("MSFT", "6mo")
+    stock_data_list = scraper.get_multiple_stocks(stocks, "2023-01-01", "2024-01-01")
+    for name, stock in stock_data_list.items():
+        print(name, stock['Close'][0], stock['Close'][-1])
+    APPLE_BEGIN = 123.63253021240234
+    APPLE_END = 191.38096618652344
+    GOOGL_BEGIN = 88.79810333251953
+    GOOGL_END = 139.18544006347656
+    AMZN_BEGIN = 85.81999969482422
+    AMZN_END = 151.94000244140625
+    TSLA_BEGIN = 0.5799999833106995
+    TSLA_END = 0.5600000023841858
+
+    PORTFOLIO_BEGIN = APPLE_BEGIN * 0.8007794044414817 + GOOGL_BEGIN * 0.014117660860342551 + AMZN_BEGIN * 0.18951722774849417 + TSLA_BEGIN * -0.004414293050318417
+    PORTFOLIO_END = APPLE_END * 0.8007794044414817 + GOOGL_END * 0.014117660860342551 + AMZN_END * 0.18951722774849417 + TSLA_END * -0.004414293050318417
+    print((PORTFOLIO_END - PORTFOLIO_BEGIN) / PORTFOLIO_BEGIN)
+    # scraper = StockDataScraper()
+    # stock_data = scraper.get_stock_data("MSFT", "2023-01-01", "2024-01-01")
+    # financials = scraper.get_financials("MSFT")
+    # key_stats = scraper.get_key_stats("MSFT")
+    # scraper.plot_log_returns("MSFT", "6mo")
     
-    print(stock_data.head())
-    print(financials)
-    print(key_stats)
+    # print(stock_data.head())
+    # print(financials)
+    # print(key_stats)
