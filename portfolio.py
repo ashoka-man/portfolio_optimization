@@ -186,4 +186,4 @@ if __name__ == "__main__":
     optimizer.plot_efficient_frontier(optimal_weights=optimal_weights)
     # print(optimizer.portfolio_graph(optimal_weights))
     # optimizer.graph_correlation_matrix()
-    # print(optimizer.cov_matrix)
+    print(optimizer.cov_matrix)
